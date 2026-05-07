@@ -17,7 +17,6 @@
 
 <div class="container">
 
-<!-- SIDEBAR -->
 <aside class="sidebar">
 
 <h2>MENÚ</h2>
@@ -30,17 +29,15 @@
 <a href="unedid.html">Historia Deportiva UNEDID</a>
 <a href="valores.html">Valores💪</a>
 <a href="logros.html">Logros🏅</a>
-<a href="juego.html" class="active">Juegos🎮</a>
+<a href="juego.html" class="active">Juegos🏅</a>
 <a href="conocelos.html">Conócenos Más🤓</a>
 <a href="sugerencia.html">Sugerencias</a>
 </nav>
 
 </aside>
 
-<!-- CONTENT -->
 <main class="content">
 
-<!-- HERO -->
 <div class="hero">
 <img src="logo.png" class="logo">
 
@@ -49,7 +46,6 @@
 <p>Unidad Educativa Remigio Romero y Cordero</p>
 </div>
 </div>
-
 
 <div class="quiz-container">
 
@@ -75,18 +71,14 @@
 
 </div>
 
-
 <div class="result-box" id="result-box">
-
 <h2>🎉 ¡Quiz terminado!</h2>
 <p>Tu puntaje final fue:</p>
-
 <div class="score-final" id="final-score">0</div>
 
 <button class="restart-btn" onclick="location.reload()">
 🔄 Volver a jugar
 </button>
-
 </div>
 
 <footer>
@@ -94,43 +86,23 @@
 </footer>
 
 </main>
-
 </div>
-
 
 <script>
 
-/* 🔊 SONIDOS */
 const sonidoCorrecto = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b6d7c8a1f.mp3");
 const sonidoError = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_3d5f1c0f1b.mp3?filename=error-2-46134.mp3");
 
 const preguntas = [
 {pregunta:"¿Qué deporte practica Daniel Pintado?",opciones:["Fútbol","Marcha Atlética","Taekwondo","Natación"],correcta:"Marcha Atlética"},
-{pregunta:"¿Qué deporte practica Renata Matute?",opciones:["Karate","Judo","Jujitsu","Lucha Olímpica"],correcta:"Jujitsu"},
-{pregunta:"¿Qué deportista ganó oro en París 2024?",opciones:["Daniel Pintado","Mike Erraez","Renata Matute","Kevin Erraez"],correcta:"Daniel Pintado"},
-{pregunta:"¿Qué deporte practica Nathaly León?",opciones:["Marcha Atlética","Fútbol","Tenis","Natación"],correcta:"Marcha Atlética"},
-{pregunta:"¿Quién es de Machala?",opciones:["David Lazo","Daniel Pintado","Mike Erraez","Renata Matute"],correcta:"David Lazo"},
-{pregunta:"¿Qué color domina la interfaz?",opciones:["Azul","Rojo","Verde","Morado"],correcta:"Azul"},
-{pregunta:"¿Qué país representan los deportistas?",opciones:["Perú","Chile","Ecuador","Colombia"],correcta:"Ecuador"},
-{pregunta:"¿Qué deporte practica Mike Erraez?",opciones:["Taekwondo","Lucha Olímpica","Jujitsu","Atletismo"],correcta:"Lucha Olímpica"},
-{pregunta:"¿Qué competencia ganó Daniel Pintado en Lima 2019?",opciones:["Panamericanos","Mundial","Sudamericanos","Olimpiadas"],correcta:"Panamericanos"},
-{pregunta:"¿Cuántos errores máximos tiene el quiz?",opciones:["3","4","5","10"],correcta:"5"},
-{pregunta:"¿Quién obtuvo oro en Copa Morlako?",opciones:["Renata Matute","Mike Erraez","Kevin Erraez","David Lazo"],correcta:"Renata Matute"},
-{pregunta:"¿Qué institución aparece en la página?",opciones:["UNEDID","Salesianos","Borja","La Salle"],correcta:"UNEDID"},
-{pregunta:"¿Quiénes son los autores de esta página?",opciones:["David Lazo, Sadma Lazo y Guissella Suqui","Daniel Pintado y Mike Erraez","Renata Matute y Nathaly León","Kevin Erraez y Juan Pablo Molina"],correcta:"David Lazo, Sadma Lazo y Guissella Suqui"},
-{pregunta:"¿Qué deporte practica David Lazo?",opciones:["Taekwondo","Atletismo","Fútbol","Jujitsu"],correcta:"Taekwondo"},
-{pregunta:"¿Quién obtuvo plata en Budapest 2023?",opciones:["Daniel Pintado","Mike Erraez","David Lazo","Kevin Erraez"],correcta:"Daniel Pintado"},
-{pregunta:"¿Quién ganó oro en Intercolegiales?",opciones:["Mike Erraez","Daniel Pintado","David Lazo","Nathaly León"],correcta:"Mike Erraez"},
-{pregunta:"¿Quién obtuvo plata en Slow Flow?",opciones:["Renata Matute","Nathaly León","Mike Erraez","Juan Pablo Molina"],correcta:"Renata Matute"},
-{pregunta:"¿Quién obtuvo oro en SNOBUDO 2024?",opciones:["David Lazo","Mike Erraez","Kevin Erraez","Daniel Pintado"],correcta:"David Lazo"},
-{pregunta:"¿Qué deportista es entrenador de atletismo?",opciones:["Juan Pablo Molina","Daniel Pintado","Kevin Erraez","Nathaly León"],correcta:"Juan Pablo Molina"},
-{pregunta:"¿Quién ganó bronce en maratón marcha?",opciones:["Nathaly León","Daniel Pintado","Renata Matute","Mike Erraez"],correcta:"Nathaly León"}
+{pregunta:"¿Qué deporte practica Renata Matute?",opciones:["Karate","Jujitsu","Judo","Lucha Olímpica"],correcta:"Jujitsu"},
+{pregunta:"¿Quiénes son los autores de esta página?",opciones:["David Lazo, Sadma Lazo y Guissella Suqui","Daniel Pintado","Renata Matute","Mike Erraez"],correcta:"David Lazo, Sadma Lazo y Guissella Suqui"}
 ];
 
 preguntas.sort(()=>Math.random()-0.5);
 
 let i=0, score=0, errors=0, time=12, timer;
-
+let locked = false;
 
 const q=document.getElementById("question");
 const a=document.getElementById("answers");
@@ -139,12 +111,12 @@ const e=document.getElementById("errors");
 const s=document.getElementById("score");
 const bar=document.getElementById("progress-bar");
 
-
 function load(){
 
 clearInterval(timer);
 time=12;
 t.textContent=time;
+locked = false;
 
 let p=preguntas[i];
 
@@ -162,33 +134,42 @@ p.opciones.forEach(op=>{
 let b=document.createElement("button");
 b.className="answer";
 b.textContent=op;
+b.style.touchAction = "manipulation";
+
 b.onclick=()=>check(b,op);
+
 a.appendChild(b);
 });
 
 start();
 }
 
-
 function check(btn,op){
 
+if(locked) return;
+locked = true;
 clearInterval(timer);
 
-let correct=preguntas[i].correcta;
+let correct = preguntas[i].correcta.trim();
 
 document.querySelectorAll(".answer").forEach(b=>{
-b.disabled=true;
-if(b.textContent===correct)b.classList.add("correct");
+b.disabled = true;
+
+let txt = b.textContent.trim();
+
+if(txt === correct){
+b.classList.add("correct");
+}
 });
 
-if(op===correct){
+if(op.trim() === correct){
 
 sonidoCorrecto.currentTime=0;
 sonidoCorrecto.play().catch(()=>{});
 
 btn.classList.add("correct");
-score+=10;
-s.textContent=score;
+score += 10;
+s.textContent = score;
 
 }else{
 
@@ -197,21 +178,17 @@ sonidoError.play().catch(()=>{});
 
 btn.classList.add("wrong");
 errors++;
-e.textContent=errors;
-
+e.textContent = errors;
 }
-
 }
-
 
 document.getElementById("next-btn").onclick=()=>{
 i++;
-if(i<preguntas.length)load();
+if(i<preguntas.length) load();
 else end();
 };
 
 document.getElementById("restart-btn").onclick=()=>location.reload();
-
 
 function end(){
 clearInterval(timer);
@@ -220,16 +197,17 @@ document.getElementById("result-box").style.display="block";
 document.getElementById("final-score").textContent=score+" pts";
 }
 
-
 function start(){
 timer=setInterval(()=>{
 time--;
 t.textContent=time;
+
 if(time<=0){
 errors++;
 e.textContent=errors;
+
 i++;
-if(i<preguntas.length)load();
+if(i<preguntas.length) load();
 else end();
 }
 },1000);
