@@ -1,216 +1,808 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Quiz Deportivo UNEDID</title>
+<title>Atrapa la Leyenda</title>
 
-<link rel="icon" href="favicon.ico">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="estilos.css">
-<link rel="stylesheet" href="quizz.css">
-</head> 
+<link rel="stylesheet" href="atrapa.css">
+
+<style>
+
+.modal{
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0,0,0,.75);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+}
+
+.modal-box{
+
+    background: white;
+
+    width: 90%;
+    max-width: 430px;
+
+    padding: 35px;
+
+    border-radius: 25px;
+
+    text-align: center;
+
+    animation: aparecer .4s ease;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,.4);
+
+}
+
+.modal-box h2{
+
+    font-size: 2rem;
+    margin-bottom: 15px;
+
+}
+
+.modal-box p{
+
+    color: #444;
+    font-size: 1.1rem;
+
+    margin-bottom: 25px;
+
+}
+
+.modal-box button{
+
+    padding: 12px 25px;
+
+    border: none;
+    border-radius: 12px;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    margin: 5px;
+
+    transition: .3s;
+
+}
+
+.btn-next{
+
+    background: #00b894;
+    color: white;
+
+}
+
+.btn-next:hover{
+
+    background: #00a383;
+
+}
+
+.btn-cancel{
+
+    background: #d63031;
+    color: white;
+
+}
+
+.btn-cancel:hover{
+
+    background: #b71c1c;
+
+}
+
+.ganar{
+
+    color: #00b894;
+
+}
+
+.perder{
+
+    color: #d63031;
+
+}
+
+.objetivo-box{
+
+    background: #111;
+
+    color: white;
+
+    padding: 12px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    font-weight: bold;
+
+}
+
+@keyframes aparecer{
+
+    from{
+
+        transform: scale(.7);
+        opacity: 0;
+
+    }
+
+    to{
+
+        transform: scale(1);
+        opacity: 1;
+
+    }
+
+}
+
+</style>
+
+</head>
 
 <body>
 
 <div class="container">
 
 <aside class="sidebar">
+
 <h2>MENÚ</h2>
+
 <nav>
+
 <a href="index.html">Inicio</a>
+
 <a href="destacados.html">Estudiantes destacados👩‍🏫</a>
+
 <a href="galeria.html">Galería🖼️</a>
+
 <a href="entrevistas.html">Historia Deportiva📚</a>
+
 <a href="unedid.html">Historia Deportiva UNEDID</a>
+
 <a href="valores.html">Valores💪</a>
+
 <a href="logros.html">Logros🏅</a>
-<a href="juego.html" class="active">Juegos🏅</a>
+
+<a href="juego.html" class="active">Juegos🎮</a>
+
 <a href="conocelos.html">Conócenos Más🤓</a>
+
 <a href="sugerencia.html">Sugerencias</a>
+
 </nav>
+
 </aside>
 
 <main class="content">
 
 <div class="hero">
-<img src="logo.png" class="logo">
+
+<img src="logo.png" alt="Logo" class="logo">
+
 <div>
-<h1>QUIZ DEPORTIVO</h1>
-<p>Unidad Educativa UNEDID</p>
-</div>
-</div>
 
-<div class="quiz-container">
+<h1>ATRAPA LA LEYENDA 🏆</h1>
 
-<div class="quiz-info">
-<div class="info-card">⏱ <span id="timer">12</span>s</div>
-<div class="info-card">❤️ <span id="errors">0</span>/5</div>
-<div class="info-card">⭐ <span id="score">0</span></div>
-</div>
+<p>
+Atrapa a los deportistas antes de que desaparezcan.
+</p>
 
-<div class="progress">
-<div class="progress-bar" id="progress-bar"></div>
-</div>
-
-<div class="question-number" id="question-number"></div>
-<div class="question" id="question"></div>
-
-<div class="answers" id="answers"></div>
-
-<div class="quiz-footer">
-<button id="next-btn">Siguiente ➜</button>
-<button id="restart-btn">Reiniciar 🔄</button>
 </div>
 
 </div>
 
-<div class="result-box" id="result-box">
-<h2>🎉 ¡Quiz terminado!</h2>
-<div class="score-final" id="final-score">0</div>
-<button onclick="location.reload()">🔄 Volver a jugar</button>
+<section class="juego-box">
+
+<div class="panel">
+
+<div class="caja">
+⏳ Tiempo
+<span id="tiempo">45</span>
 </div>
+
+<div class="caja">
+⭐ Puntos
+<span id="puntos">0</span>
+</div>
+
+<div class="caja">
+❌ Errores
+<span id="errores">0</span>/5
+</div>
+
+<div class="caja">
+⚡ Nivel
+<span id="nivel">1</span>
+</div>
+
+</div>
+
+<div class="objetivo-box">
+🎯 Objetivo:
+<span id="objetivoTexto">2 puntos para pasar</span>
+</div>
+
+<div class="botones">
+
+<button id="startBtn">
+🔥 INICIAR
+</button>
+
+<button id="restartBtn">
+🔄 REINICIAR
+</button>
+
+</div>
+
+<div class="tablero">
+
+<div class="agujero">
+<img src="DANIELPINTADO.jpeg" class="topo">
+</div>
+
+<div class="agujero">
+<img src="JUAN PABLO.jpeg" class="topo">
+</div>
+
+<div class="agujero">
+<img src="mauricio.jpeg" class="topo">
+</div>
+
+<div class="agujero">
+<img src="mike2.jpg" class="topo">
+</div>
+
+<div class="agujero">
+<img src="david.jpeg" class="topo">
+</div>
+
+<div class="agujero">
+<img src="nathaly2.png" class="topo">
+</div>
+
+</div>
+
+<div class="barra-contenedor">
+
+<div class="barra" id="barra"></div>
+
+</div>
+
+</section>
 
 <footer>
 © 2026 - David Lazo - Sadma Lazo - Guissella Suqui
 </footer>
 
 </main>
+
 </div>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<h2 id="modalTitulo"></h2>
+
+<p id="modalTexto"></p>
+
+<div id="modalBotones"></div>
+
+</div>
+
+</div>
+
+<!-- SONIDOS -->
+
+<audio id="hitSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+
+<audio id="loseSound" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3"></audio>
+
+<audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
+
+<!-- NUEVO SONIDO ERROR -->
+
+<audio id="errorSound" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
 
 <script>
 
-const sonidoCorrecto = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_5b6d7c8a1f.mp3");
-const sonidoError = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_3d5f1c0f1b.mp3");
+const topos = document.querySelectorAll(".topo");
+const agujeros = document.querySelectorAll(".agujero");
 
-const preguntas = [
-{pregunta:"¿Qué deporte practica Daniel Pintado?",opciones:["Fútbol","Marcha Atlética","Taekwondo","Natación"],correcta:"Marcha Atlética"},
-{pregunta:"¿Qué deporte practica Renata Matute?",opciones:["Karate","Judo","Jujitsu","Lucha Olímpica"],correcta:"Jujitsu"},
-{pregunta:"¿Qué deportista ganó oro en París 2024?",opciones:["Daniel Pintado","Mike Erraez","Renata Matute","Kevin Erraez"],correcta:"Daniel Pintado"},
-{pregunta:"¿Qué deporte practica Nathaly León?",opciones:["Marcha Atlética","Fútbol","Tenis","Natación"],correcta:"Marcha Atlética"},
-{pregunta:"¿Quién es de Machala?",opciones:["David Lazo","Daniel Pintado","Mike Erraez","Renata Matute"],correcta:"David Lazo"},
-{pregunta:"¿Qué color domina la interfaz?",opciones:["Azul","Rojo","Verde","Morado"],correcta:"Azul"},
-{pregunta:"¿Qué país representan los deportistas?",opciones:["Perú","Chile","Ecuador","Colombia"],correcta:"Ecuador"},
-{pregunta:"¿Qué deporte practica Mike Erraez?",opciones:["Taekwondo","Lucha Olímpica","Jujitsu","Atletismo"],correcta:"Lucha Olímpica"},
-{pregunta:"¿Qué competencia ganó Daniel Pintado en Lima 2019?",opciones:["Panamericanos","Mundial","Sudamericanos","Olimpiadas"],correcta:"Panamericanos"},
-{pregunta:"¿Cuántos errores máximos tiene el quiz?",opciones:["3","4","5","10"],correcta:"5"},
-{pregunta:"¿Quién obtuvo oro en Copa Morlako?",opciones:["Renata Matute","Mike Erraez","Kevin Erraez","David Lazo"],correcta:"Renata Matute"},
-{pregunta:"¿Qué institución aparece en la página?",opciones:["UNEDID","Salesianos","Borja","La Salle"],correcta:"UNEDID"},
-{pregunta:"¿Qué deporte practica David Lazo?",opciones:["Taekwondo","Atletismo","Fútbol","Jujitsu"],correcta:"Taekwondo"},
-{pregunta:"¿Quién obtuvo plata en Budapest 2023?",opciones:["Daniel Pintado","Mike Erraez","David Lazo","Kevin Erraez"],correcta:"Daniel Pintado"},
-{pregunta:"¿Quién ganó oro en Intercolegiales?",opciones:["Mike Erraez","Daniel Pintado","David Lazo","Nathaly León"],correcta:"Mike Erraez"},
-{pregunta:"¿Quién obtuvo plata en Slow Flow?",opciones:["Renata Matute","Nathaly León","Mike Erraez","Juan Pablo Molina"],correcta:"Renata Matute"},
-{pregunta:"¿Quién obtuvo oro en SNOBUDO 2024?",opciones:["David Lazo","Mike Erraez","Kevin Erraez","Daniel Pintado"],correcta:"David Lazo"},
-{pregunta:"¿Qué deportista es entrenador de atletismo?",opciones:["Juan Pablo Molina","Daniel Pintado","Kevin Erraez","Nathaly León"],correcta:"Juan Pablo Molina"},
-{pregunta:"¿Quién ganó bronce en maratón marcha?",opciones:["Nathaly León","Daniel Pintado","Renata Matute","Mike Erraez"],correcta:"Nathaly León"}
-];
+const puntosTexto = document.getElementById("puntos");
+const tiempoTexto = document.getElementById("tiempo");
+const erroresTexto = document.getElementById("errores");
+const nivelTexto = document.getElementById("nivel");
+const objetivoTexto = document.getElementById("objetivoTexto");
 
-let i=0, score=0, errors=0, time=12, timer;
-let locked=false;
+const barra = document.getElementById("barra");
 
-const q=document.getElementById("question");
-const a=document.getElementById("answers");
-const t=document.getElementById("timer");
-const e=document.getElementById("errors");
-const s=document.getElementById("score");
-const bar=document.getElementById("progress-bar");
+const startBtn = document.getElementById("startBtn");
+const restartBtn = document.getElementById("restartBtn");
 
-function load(){
+const modal = document.getElementById("modal");
+const modalTitulo = document.getElementById("modalTitulo");
+const modalTexto = document.getElementById("modalTexto");
+const modalBotones = document.getElementById("modalBotones");
 
-clearInterval(timer);
-locked=false;
-time=12;
-t.textContent=time;
+/* SONIDOS */
 
-if(i>=preguntas.length){
-end();
-return;
-}
+const hitSound = document.getElementById("hitSound");
+const loseSound = document.getElementById("loseSound");
+const winSound = document.getElementById("winSound");
+const errorSound = document.getElementById("errorSound");
 
-let p=preguntas[i];
+/* VARIABLES */
 
-document.getElementById("question-number").textContent=
-`Pregunta ${i+1} de ${preguntas.length}`;
+let puntos = 0;
+let tiempo = 45;
+let errores = 0;
+let nivel = 1;
 
-q.textContent=p.pregunta;
-a.innerHTML="";
+let velocidad = 1800;
 
-bar.style.width=((i+1)/preguntas.length)*100+"%";
+let juegoActivo = false;
+let intervaloTiempo;
 
-p.opciones.sort(()=>Math.random()-0.5);
+let ultimoAgujero;
 
-p.opciones.forEach(op=>{
-let b=document.createElement("button");
-b.className="answer";
-b.textContent=op;
-b.dataset.value=op;
-b.style.touchAction="manipulation";
-b.onclick=()=>check(b);
-a.appendChild(b);
-});
+/* OBJETIVOS */
 
-start();
-}
+const objetivos = {
 
-function check(btn){
+    1: 2,
+    2: 3,
+    3: 4,
+    4: 5
 
-if(locked) return;
-locked=true;
-
-clearInterval(timer);
-
-let correct=preguntas[i].correcta;
-
-document.querySelectorAll(".answer").forEach(b=>{
-b.disabled=true;
-if(b.dataset.value===correct){
-b.classList.add("correct");
-}
-});
-
-if(btn.dataset.value===correct){
-sonidoCorrecto.play().catch(()=>{});
-score+=10;
-s.textContent=score;
-}else{
-sonidoError.play().catch(()=>{});
-btn.classList.add("wrong");
-errors++;
-e.textContent=errors;
-}
-}
-
-document.getElementById("next-btn").onclick=()=>{
-i++;
-load();
 };
 
-document.getElementById("restart-btn").onclick=()=>location.reload();
+/* RANDOM */
 
-function end(){
-clearInterval(timer);
-document.querySelector(".quiz-container").style.display="none";
-document.getElementById("result-box").style.display="block";
-document.getElementById("final-score").textContent=score+" pts";
+function agujeroRandom(){
+
+    let agujero;
+
+    do{
+
+        agujero = agujeros[Math.floor(Math.random() * agujeros.length)];
+
+    }while(agujero === ultimoAgujero);
+
+    ultimoAgujero = agujero;
+
+    return agujero;
+
 }
 
-function start(){
-timer=setInterval(()=>{
-time--;
-t.textContent=time;
-if(time<=0){
-errors++;
-e.textContent=errors;
-i++;
-load();
-}
-},1000);
+/* BARRA */
+
+function actualizarBarra(){
+
+    let objetivo = objetivos[nivel];
+
+    let progreso = (puntos / objetivo) * 100;
+
+    barra.style.width = progreso + "%";
+
 }
 
-load();
+/* OBJETIVO */
+
+function actualizarObjetivo(){
+
+    objetivoTexto.textContent =
+    objetivos[nivel] + " puntos para pasar";
+
+}
+
+/* MODAL */
+
+function mostrarModal(titulo, texto, botonesHTML){
+
+    modal.style.display = "flex";
+
+    modalTitulo.innerHTML = titulo;
+    modalTexto.innerHTML = texto;
+
+    modalBotones.innerHTML = botonesHTML;
+
+}
+
+function cerrarModal(){
+
+    modal.style.display = "none";
+
+}
+
+/* ERROR */
+
+function sumarError(){
+
+    errores++;
+
+    erroresTexto.textContent = errores;
+
+    errorSound.currentTime = 0;
+    errorSound.play();
+
+    if(errores >= 5){
+
+        terminarJuego(false);
+
+    }
+
+}
+
+/* PASAR NIVEL */
+
+function pasarNivel(){
+
+    juegoActivo = false;
+
+    clearInterval(intervaloTiempo);
+
+    mostrarModal(
+
+        `🎉 NIVEL ${nivel} COMPLETADO`,
+        `¡Excelente! Superaste el nivel ${nivel}.`,
+        
+        `
+        <button class="btn-next" onclick="continuarNivel()">
+        🚀 SIGUIENTE NIVEL
+        </button>
+
+        <button class="btn-cancel" onclick="cerrarJuego()">
+        ❌ SALIR
+        </button>
+        `
+
+    );
+
+}
+
+/* CONTINUAR */
+
+function continuarNivel(){
+
+    cerrarModal();
+
+    nivel++;
+
+    puntos = 0;
+    tiempo = 45;
+
+    if(nivel === 2){
+
+        velocidad = 1500;
+
+    }
+
+    if(nivel === 3){
+
+        velocidad = 1200;
+
+    }
+
+    if(nivel === 4){
+
+        velocidad = 900;
+
+    }
+
+    nivelTexto.textContent = nivel;
+    puntosTexto.textContent = puntos;
+    tiempoTexto.textContent = tiempo;
+
+    actualizarObjetivo();
+
+    barra.style.width = "0%";
+
+    juegoActivo = true;
+
+    mostrarTopo();
+
+    intervaloTiempo = setInterval(()=>{
+
+        tiempo--;
+
+        tiempoTexto.textContent = tiempo;
+
+        if(tiempo <= 0){
+
+            terminarJuego(false);
+
+        }
+
+    },1000);
+
+}
+
+/* SALIR */
+
+function cerrarJuego(){
+
+    cerrarModal();
+
+    terminarJuego(true);
+
+}
+
+/* MOSTRAR TOPO */
+
+function mostrarTopo(){
+
+    if(!juegoActivo) return;
+
+    topos.forEach(t => {
+
+        t.classList.remove("visible");
+
+    });
+
+    const agujero = agujeroRandom();
+
+    const topo = agujero.querySelector(".topo");
+
+    topo.classList.add("visible");
+
+    const tiempoVisible = Math.random() * velocidad + 900;
+
+    setTimeout(() => {
+
+        if(topo.classList.contains("visible")){
+
+            topo.classList.remove("visible");
+
+            loseSound.currentTime = 0;
+            loseSound.play();
+
+            agujero.classList.add("shake");
+
+            setTimeout(()=>{
+
+                agujero.classList.remove("shake");
+
+            },300);
+
+            /* SI NO HIZO CLICK = ERROR */
+
+            sumarError();
+
+            return;
+
+        }
+
+        if(juegoActivo){
+
+            setTimeout(()=>{
+
+                mostrarTopo();
+
+            },Math.random() * 400);
+
+        }
+
+    }, tiempoVisible);
+
+}
+
+/* CLICK */
+
+topos.forEach(topo => {
+
+    topo.addEventListener("click", () => {
+
+        if(!juegoActivo) return;
+
+        if(!topo.classList.contains("visible")) return;
+
+        topo.classList.remove("visible");
+
+        puntos++;
+
+        puntosTexto.textContent = puntos;
+
+        hitSound.currentTime = 0;
+        hitSound.play();
+
+        actualizarBarra();
+
+        topo.classList.add("golpe");
+
+        setTimeout(()=>{
+
+            topo.classList.remove("golpe");
+
+        },200);
+
+        if(nivel === 1 && puntos >= objetivos[1]){
+
+            pasarNivel();
+
+        }
+
+        else if(nivel === 2 && puntos >= objetivos[2]){
+
+            pasarNivel();
+
+        }
+
+        else if(nivel === 3 && puntos >= objetivos[3]){
+
+            pasarNivel();
+
+        }
+
+        else if(nivel === 4 && puntos >= objetivos[4]){
+
+            terminarJuego(true);
+
+        }
+
+    });
+
+});
+
+/* INICIAR */
+
+function iniciarJuego(){
+
+    clearInterval(intervaloTiempo);
+
+    puntos = 0;
+    tiempo = 45;
+    errores = 0;
+    nivel = 1;
+
+    velocidad = 1800;
+
+    juegoActivo = true;
+
+    puntosTexto.textContent = puntos;
+    tiempoTexto.textContent = tiempo;
+    erroresTexto.textContent = errores;
+    nivelTexto.textContent = nivel;
+
+    actualizarObjetivo();
+
+    barra.style.width = "0%";
+
+    mostrarTopo();
+
+    intervaloTiempo = setInterval(()=>{
+
+        tiempo--;
+
+        tiempoTexto.textContent = tiempo;
+
+        if(tiempo <= 0){
+
+            terminarJuego(false);
+
+        }
+
+    },1000);
+
+}
+
+/* TERMINAR */
+
+function terminarJuego(gano){
+
+    juegoActivo = false;
+
+    clearInterval(intervaloTiempo);
+
+    topos.forEach(t => {
+
+        t.classList.remove("visible");
+
+    });
+
+    if(gano){
+
+        winSound.play();
+
+        mostrarModal(
+
+            `<span class="ganar">🏆 ¡GANASTE!</span>`,
+            `Superaste todos los niveles.`,
+            
+            `
+            <button class="btn-next" onclick="reiniciarJuego()">
+            🔄 JUGAR OTRA VEZ
+            </button>
+            `
+
+        );
+
+    }else{
+
+        loseSound.play();
+
+        mostrarModal(
+
+            `<span class="perder">💀 PERDISTE</span>`,
+            `Llegaste al nivel ${nivel}.`,
+            
+            `
+            <button class="btn-cancel" onclick="reiniciarJuego()">
+            🔄 REINTENTAR
+            </button>
+            `
+
+        );
+
+    }
+
+}
+
+/* REINICIAR */
+
+function reiniciarJuego(){
+
+    cerrarModal();
+
+    juegoActivo = false;
+
+    clearInterval(intervaloTiempo);
+
+    puntos = 0;
+    tiempo = 45;
+    errores = 0;
+    nivel = 1;
+
+    velocidad = 1800;
+
+    puntosTexto.textContent = puntos;
+    tiempoTexto.textContent = tiempo;
+    erroresTexto.textContent = errores;
+    nivelTexto.textContent = nivel;
+
+    actualizarObjetivo();
+
+    barra.style.width = "0%";
+
+    topos.forEach(t => {
+
+        t.classList.remove("visible");
+
+    });
+
+}
+
+/* BOTONES */
+
+startBtn.addEventListener("click", iniciarJuego);
+
+restartBtn.addEventListener("click", reiniciarJuego);
 
 </script>
 
