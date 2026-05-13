@@ -166,7 +166,7 @@ REINICIAR
 
 </div>
 
-<!-- ===== SONIDOS GAMER ===== -->
+<!-- ===== SONIDOS ===== -->
 
 <audio
 id="hitSound"
@@ -188,29 +188,21 @@ src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3">
 /* ===== SONIDOS ===== */
 
 const hitSound = document.getElementById("hitSound");
-
 const errorSound = document.getElementById("errorSound");
-
 const levelSound = document.getElementById("levelSound");
 
 hitSound.volume = 0.4;
-
 errorSound.volume = 0.45;
-
 levelSound.volume = 0.7;
 
 /* ===== ELEMENTOS ===== */
 
 const topos = document.querySelectorAll(".topo");
-
 const agujeros = document.querySelectorAll(".agujero");
 
 const puntosTexto = document.getElementById("puntos");
-
 const tiempoTexto = document.getElementById("tiempo");
-
 const erroresTexto = document.getElementById("errores");
-
 const nivelTexto = document.getElementById("nivel");
 
 const barra = document.getElementById("barra");
@@ -218,29 +210,21 @@ const barra = document.getElementById("barra");
 const objetivoTexto = document.getElementById("objetivoTexto");
 
 const modal = document.getElementById("modal");
-
 const modalTitulo = document.getElementById("modalTitulo");
-
 const modalTexto = document.getElementById("modalTexto");
-
 const modalBotones = document.getElementById("modalBotones");
 
 /* ===== VARIABLES ===== */
 
 let puntos = 0;
-
 let errores = 0;
-
 let tiempo = 45;
-
 let nivel = 1;
 
 let juegoActivo = false;
-
 let intervaloTiempo;
 
 let velocidad = 2000;
-
 let ultimo = null;
 
 /* ===== OBJETIVOS ===== */
@@ -248,11 +232,8 @@ let ultimo = null;
 const objetivos = {
 
 1: 2,
-
 2: 4,
-
 3: 6,
-
 4: 8
 
 };
@@ -261,13 +242,17 @@ const objetivos = {
 
 function actualizarDificultad(){
 
-if(nivel === 1) velocidad = 2100;
+/* fácil */
+if(nivel === 1) velocidad = 2300;
 
-if(nivel === 2) velocidad = 1600;
+/* medio */
+if(nivel === 2) velocidad = 1800;
 
-if(nivel === 3) velocidad = 1000;
+/* medio-alto */
+if(nivel === 3) velocidad = 1450;
 
-if(nivel === 4) velocidad = 750;
+/* difícil pero jugable */
+if(nivel === 4) velocidad = 1200;
 
 }
 
@@ -276,11 +261,8 @@ if(nivel === 4) velocidad = 750;
 function actualizarUI(){
 
 puntosTexto.textContent = puntos;
-
 erroresTexto.textContent = errores;
-
 tiempoTexto.textContent = tiempo;
-
 nivelTexto.textContent = nivel;
 
 objetivoTexto.textContent =
@@ -318,7 +300,6 @@ errores++;
 erroresTexto.textContent = errores;
 
 errorSound.currentTime = 0;
-
 errorSound.play().catch(()=>{});
 
 if(errores >= 5){
@@ -339,7 +320,6 @@ if(!juegoActivo) return;
 topos.forEach(t => {
 
 t.classList.remove("visible");
-
 t.dataset.clicked = "false";
 
 });
@@ -349,16 +329,14 @@ const topo = randomAgujero().querySelector(".topo");
 
 topo.classList.add("visible");
 
-/* tiempo original */
-let tiempoVisible = velocidad * (0.4 + Math.random());
+/* tiempo visible */
+let tiempoVisible = velocidad * (0.7 + Math.random() * 0.4);
 
 setTimeout(() => {
 
-/* si NO lo aplastaron */
 if(
 
 topo.classList.contains("visible") &&
-
 topo.dataset.clicked !== "true"
 
 ){
@@ -369,10 +347,10 @@ sumarError();
 
 }
 
-/* continuar */
+/* continuar juego */
 if(juegoActivo){
 
-setTimeout(mostrarTopo, 80 + Math.random()*120);
+setTimeout(mostrarTopo, 120);
 
 }
 
@@ -384,30 +362,32 @@ setTimeout(mostrarTopo, 80 + Math.random()*120);
 
 topos.forEach(topo => {
 
-topo.addEventListener("click", () => {
+topo.addEventListener("pointerdown", (e) => {
+
+e.preventDefault();
 
 if(!juegoActivo) return;
 
 if(!topo.classList.contains("visible")) return;
 
-/* evitar bug */
 if(topo.dataset.clicked === "true") return;
 
+/* marcar click */
 topo.dataset.clicked = "true";
 
 topo.classList.remove("visible");
 
+/* sumar punto */
 puntos++;
 
-puntosTexto.textContent = puntos;
-
-/* sonido hit */
+/* sonido */
 hitSound.currentTime = 0;
-
 hitSound.play().catch(()=>{});
 
+/* actualizar */
 actualizarUI();
 
+/* revisar nivel */
 if(puntos >= objetivos[nivel]){
 
 if(nivel < 4){
@@ -435,7 +415,6 @@ juegoActivo = false;
 clearInterval(intervaloTiempo);
 
 levelSound.currentTime = 0;
-
 levelSound.play().catch(()=>{});
 
 modal.style.display = "flex";
@@ -464,11 +443,9 @@ modal.style.display = "none";
 nivel++;
 
 puntos = 0;
-
 tiempo = 45;
 
 actualizarDificultad();
-
 actualizarUI();
 
 juegoActivo = true;
@@ -500,15 +477,11 @@ clearInterval(intervaloTiempo);
 modal.style.display = "none";
 
 puntos = 0;
-
 errores = 0;
-
 tiempo = 45;
-
 nivel = 1;
 
 actualizarDificultad();
-
 actualizarUI();
 
 juegoActivo = true;
@@ -539,14 +512,22 @@ juegoActivo = false;
 
 clearInterval(intervaloTiempo);
 
+/* ocultar topos */
+topos.forEach(t => {
+
+t.classList.remove("visible");
+
+});
+
 modal.style.display = "flex";
 
 modalTitulo.textContent =
 gano ? "🏆 GANASTE" : "💀 PERDISTE";
 
 modalTexto.textContent =
+
 gano
-? "Excelente partida"
+? "Excelente partida 🔥"
 : "Sigue intentando";
 
 modalBotones.innerHTML =
@@ -561,7 +542,6 @@ REINICIAR
 /* ===== BOTONES ===== */
 
 document.getElementById("startBtn").onclick = iniciar;
-
 document.getElementById("restartBtn").onclick = iniciar;
 
 </script>
