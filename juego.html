@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 
 <meta charset="UTF-8">
@@ -14,152 +15,6 @@
 
 <link rel="stylesheet" href="estilos.css">
 <link rel="stylesheet" href="atrapa.css">
-
-<style>
-
-.modal{
-
-    position: fixed;
-    inset: 0;
-
-    background: rgba(0,0,0,.75);
-
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
-
-}
-
-.modal-box{
-
-    background: white;
-
-    width: 90%;
-    max-width: 430px;
-
-    padding: 35px;
-
-    border-radius: 25px;
-
-    text-align: center;
-
-    animation: aparecer .4s ease;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
-
-}
-
-.modal-box h2{
-
-    font-size: 2rem;
-    margin-bottom: 15px;
-
-}
-
-.modal-box p{
-
-    color: #444;
-    font-size: 1.1rem;
-
-    margin-bottom: 25px;
-
-}
-
-.modal-box button{
-
-    padding: 12px 25px;
-
-    border: none;
-    border-radius: 12px;
-
-    font-size: 1rem;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    margin: 5px;
-
-    transition: .3s;
-
-}
-
-.btn-next{
-
-    background: #00b894;
-    color: white;
-
-}
-
-.btn-next:hover{
-
-    background: #00a383;
-
-}
-
-.btn-cancel{
-
-    background: #d63031;
-    color: white;
-
-}
-
-.btn-cancel:hover{
-
-    background: #b71c1c;
-
-}
-
-.ganar{
-
-    color: #00b894;
-
-}
-
-.perder{
-
-    color: #d63031;
-
-}
-
-.objetivo-box{
-
-    background: #111;
-
-    color: white;
-
-    padding: 12px;
-
-    border-radius: 12px;
-
-    text-align: center;
-
-    margin-bottom: 20px;
-
-    font-weight: bold;
-
-}
-
-@keyframes aparecer{
-
-    from{
-
-        transform: scale(.7);
-        opacity: 0;
-
-    }
-
-    to{
-
-        transform: scale(1);
-        opacity: 1;
-
-    }
-
-}
-
-</style>
 
 </head>
 
@@ -201,15 +56,13 @@
 
 <div class="hero">
 
-<img src="logo.png" alt="Logo" class="logo">
+<img src="logo.png" class="logo">
 
 <div>
 
 <h1>ATRAPA LA LEYENDA 🏆</h1>
 
-<p>
-Atrapa a los deportistas antes de que desaparezcan.
-</p>
+<p>Atrapa a los deportistas antes de que desaparezcan.</p>
 
 </div>
 
@@ -242,18 +95,17 @@ Atrapa a los deportistas antes de que desaparezcan.
 </div>
 
 <div class="objetivo-box">
-🎯 Objetivo:
-<span id="objetivoTexto">2 puntos para pasar</span>
+🎯 <span id="objetivoTexto"></span>
 </div>
 
 <div class="botones">
 
 <button id="startBtn">
-🔥 INICIAR
+INICIAR
 </button>
 
 <button id="restartBtn">
-🔄 REINICIAR
+REINICIAR
 </button>
 
 </div>
@@ -261,27 +113,27 @@ Atrapa a los deportistas antes de que desaparezcan.
 <div class="tablero">
 
 <div class="agujero">
-<img src="DANIELPINTADO.jpeg" class="topo">
+<img class="topo" src="DANIELPINTADO.jpeg">
 </div>
 
 <div class="agujero">
-<img src="JUAN PABLO.jpeg" class="topo">
+<img class="topo" src="JUAN PABLO.jpeg">
 </div>
 
 <div class="agujero">
-<img src="mauricio.jpeg" class="topo">
+<img class="topo" src="mauricio.jpeg">
 </div>
 
 <div class="agujero">
-<img src="mike2.jpg" class="topo">
+<img class="topo" src="mike2.jpg">
 </div>
 
 <div class="agujero">
-<img src="david.jpeg" class="topo">
+<img class="topo" src="david.jpeg">
 </div>
 
 <div class="agujero">
-<img src="nathaly2.png" class="topo">
+<img class="topo" src="nathaly2.png">
 </div>
 
 </div>
@@ -294,15 +146,11 @@ Atrapa a los deportistas antes de que desaparezcan.
 
 </section>
 
-<footer>
-© 2026 - David Lazo - Sadma Lazo - Guissella Suqui
-</footer>
-
 </main>
 
 </div>
 
-<!-- MODAL -->
+<!-- ===== MODAL ===== -->
 
 <div class="modal" id="modal">
 
@@ -318,491 +166,403 @@ Atrapa a los deportistas antes de que desaparezcan.
 
 </div>
 
-<!-- SONIDOS -->
+<!-- ===== SONIDOS GAMER ===== -->
 
-<audio id="hitSound" src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"></audio>
+<audio
+id="hitSound"
+src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3">
+</audio>
 
-<audio id="loseSound" src="https://assets.mixkit.co/active_storage/sfx/270/270-preview.mp3"></audio>
+<audio
+id="errorSound"
+src="https://assets.mixkit.co/active_storage/sfx/2954/2954-preview.mp3">
+</audio>
 
-<audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
-
-<!-- NUEVO SONIDO ERROR -->
-
-<audio id="errorSound" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
+<audio
+id="levelSound"
+src="https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3">
+</audio>
 
 <script>
 
+/* ===== SONIDOS ===== */
+
+const hitSound = document.getElementById("hitSound");
+
+const errorSound = document.getElementById("errorSound");
+
+const levelSound = document.getElementById("levelSound");
+
+hitSound.volume = 0.4;
+
+errorSound.volume = 0.45;
+
+levelSound.volume = 0.7;
+
+/* ===== ELEMENTOS ===== */
+
 const topos = document.querySelectorAll(".topo");
+
 const agujeros = document.querySelectorAll(".agujero");
 
 const puntosTexto = document.getElementById("puntos");
+
 const tiempoTexto = document.getElementById("tiempo");
+
 const erroresTexto = document.getElementById("errores");
+
 const nivelTexto = document.getElementById("nivel");
-const objetivoTexto = document.getElementById("objetivoTexto");
 
 const barra = document.getElementById("barra");
 
-const startBtn = document.getElementById("startBtn");
-const restartBtn = document.getElementById("restartBtn");
+const objetivoTexto = document.getElementById("objetivoTexto");
 
 const modal = document.getElementById("modal");
+
 const modalTitulo = document.getElementById("modalTitulo");
+
 const modalTexto = document.getElementById("modalTexto");
+
 const modalBotones = document.getElementById("modalBotones");
 
-/* SONIDOS */
-
-const hitSound = document.getElementById("hitSound");
-const loseSound = document.getElementById("loseSound");
-const winSound = document.getElementById("winSound");
-const errorSound = document.getElementById("errorSound");
-
-/* VARIABLES */
+/* ===== VARIABLES ===== */
 
 let puntos = 0;
-let tiempo = 45;
+
 let errores = 0;
+
+let tiempo = 45;
+
 let nivel = 1;
 
-let velocidad = 1800;
-
 let juegoActivo = false;
+
 let intervaloTiempo;
 
-let ultimoAgujero;
+let velocidad = 2000;
 
-/* OBJETIVOS */
+let ultimo = null;
+
+/* ===== OBJETIVOS ===== */
 
 const objetivos = {
 
-    1: 2,
-    2: 3,
-    3: 4,
-    4: 5
+1: 2,
+
+2: 4,
+
+3: 6,
+
+4: 8
 
 };
 
-/* RANDOM */
+/* ===== DIFICULTAD ===== */
 
-function agujeroRandom(){
+function actualizarDificultad(){
 
-    let agujero;
+if(nivel === 1) velocidad = 2100;
 
-    do{
+if(nivel === 2) velocidad = 1600;
 
-        agujero = agujeros[Math.floor(Math.random() * agujeros.length)];
+if(nivel === 3) velocidad = 1000;
 
-    }while(agujero === ultimoAgujero);
-
-    ultimoAgujero = agujero;
-
-    return agujero;
+if(nivel === 4) velocidad = 750;
 
 }
 
-/* BARRA */
+/* ===== UI ===== */
 
-function actualizarBarra(){
+function actualizarUI(){
 
-    let objetivo = objetivos[nivel];
+puntosTexto.textContent = puntos;
 
-    let progreso = (puntos / objetivo) * 100;
+erroresTexto.textContent = errores;
 
-    barra.style.width = progreso + "%";
+tiempoTexto.textContent = tiempo;
 
-}
+nivelTexto.textContent = nivel;
 
-/* OBJETIVO */
+objetivoTexto.textContent =
+`${objetivos[nivel]} puntos para pasar`;
 
-function actualizarObjetivo(){
-
-    objetivoTexto.textContent =
-    objetivos[nivel] + " puntos para pasar";
-
-}
-
-/* MODAL */
-
-function mostrarModal(titulo, texto, botonesHTML){
-
-    modal.style.display = "flex";
-
-    modalTitulo.innerHTML = titulo;
-    modalTexto.innerHTML = texto;
-
-    modalBotones.innerHTML = botonesHTML;
+barra.style.width =
+(puntos / objetivos[nivel]) * 100 + "%";
 
 }
 
-function cerrarModal(){
+/* ===== RANDOM ===== */
 
-    modal.style.display = "none";
+function randomAgujero(){
+
+let a;
+
+do{
+
+a = agujeros[Math.floor(Math.random() * agujeros.length)];
+
+}while(a === ultimo);
+
+ultimo = a;
+
+return a;
 
 }
 
-/* ERROR */
+/* ===== ERRORES ===== */
 
 function sumarError(){
 
-    errores++;
+errores++;
 
-    erroresTexto.textContent = errores;
+erroresTexto.textContent = errores;
 
-    errorSound.currentTime = 0;
-    errorSound.play();
+errorSound.currentTime = 0;
 
-    if(errores >= 5){
+errorSound.play().catch(()=>{});
 
-        terminarJuego(false);
+if(errores >= 5){
 
-    }
-
-}
-
-/* PASAR NIVEL */
-
-function pasarNivel(){
-
-    juegoActivo = false;
-
-    clearInterval(intervaloTiempo);
-
-    mostrarModal(
-
-        `🎉 NIVEL ${nivel} COMPLETADO`,
-        `¡Excelente! Superaste el nivel ${nivel}.`,
-        
-        `
-        <button class="btn-next" onclick="continuarNivel()">
-        🚀 SIGUIENTE NIVEL
-        </button>
-
-        <button class="btn-cancel" onclick="cerrarJuego()">
-        ❌ SALIR
-        </button>
-        `
-
-    );
+terminarJuego(false);
 
 }
 
-/* CONTINUAR */
-
-function continuarNivel(){
-
-    cerrarModal();
-
-    nivel++;
-
-    puntos = 0;
-    tiempo = 45;
-
-    if(nivel === 2){
-
-        velocidad = 1500;
-
-    }
-
-    if(nivel === 3){
-
-        velocidad = 1200;
-
-    }
-
-    if(nivel === 4){
-
-        velocidad = 900;
-
-    }
-
-    nivelTexto.textContent = nivel;
-    puntosTexto.textContent = puntos;
-    tiempoTexto.textContent = tiempo;
-
-    actualizarObjetivo();
-
-    barra.style.width = "0%";
-
-    juegoActivo = true;
-
-    mostrarTopo();
-
-    intervaloTiempo = setInterval(()=>{
-
-        tiempo--;
-
-        tiempoTexto.textContent = tiempo;
-
-        if(tiempo <= 0){
-
-            terminarJuego(false);
-
-        }
-
-    },1000);
-
 }
 
-/* SALIR */
-
-function cerrarJuego(){
-
-    cerrarModal();
-
-    terminarJuego(true);
-
-}
-
-/* MOSTRAR TOPO */
+/* ===== MOSTRAR TOPO ===== */
 
 function mostrarTopo(){
 
-    if(!juegoActivo) return;
+if(!juegoActivo) return;
 
-    topos.forEach(t => {
+/* ocultar todos */
+topos.forEach(t => {
 
-        t.classList.remove("visible");
+t.classList.remove("visible");
 
-    });
-
-    const agujero = agujeroRandom();
-
-    const topo = agujero.querySelector(".topo");
-
-    topo.classList.add("visible");
-
-    const tiempoVisible = Math.random() * velocidad + 900;
-
-    setTimeout(() => {
-
-        if(topo.classList.contains("visible")){
-
-            topo.classList.remove("visible");
-
-            loseSound.currentTime = 0;
-            loseSound.play();
-
-            agujero.classList.add("shake");
-
-            setTimeout(()=>{
-
-                agujero.classList.remove("shake");
-
-            },300);
-
-            /* SI NO HIZO CLICK = ERROR */
-
-            sumarError();
-
-            return;
-
-        }
-
-        if(juegoActivo){
-
-            setTimeout(()=>{
-
-                mostrarTopo();
-
-            },Math.random() * 400);
-
-        }
-
-    }, tiempoVisible);
-
-}
-
-/* CLICK */
-
-topos.forEach(topo => {
-
-    topo.addEventListener("click", () => {
-
-        if(!juegoActivo) return;
-
-        if(!topo.classList.contains("visible")) return;
-
-        topo.classList.remove("visible");
-
-        puntos++;
-
-        puntosTexto.textContent = puntos;
-
-        hitSound.currentTime = 0;
-        hitSound.play();
-
-        actualizarBarra();
-
-        topo.classList.add("golpe");
-
-        setTimeout(()=>{
-
-            topo.classList.remove("golpe");
-
-        },200);
-
-        if(nivel === 1 && puntos >= objetivos[1]){
-
-            pasarNivel();
-
-        }
-
-        else if(nivel === 2 && puntos >= objetivos[2]){
-
-            pasarNivel();
-
-        }
-
-        else if(nivel === 3 && puntos >= objetivos[3]){
-
-            pasarNivel();
-
-        }
-
-        else if(nivel === 4 && puntos >= objetivos[4]){
-
-            terminarJuego(true);
-
-        }
-
-    });
+t.dataset.clicked = "false";
 
 });
 
-/* INICIAR */
+/* elegir topo */
+const topo = randomAgujero().querySelector(".topo");
 
-function iniciarJuego(){
+topo.classList.add("visible");
 
-    clearInterval(intervaloTiempo);
+/* tiempo original */
+let tiempoVisible = velocidad * (0.4 + Math.random());
 
-    puntos = 0;
-    tiempo = 45;
-    errores = 0;
-    nivel = 1;
+setTimeout(() => {
 
-    velocidad = 1800;
+/* si NO lo aplastaron */
+if(
 
-    juegoActivo = true;
+topo.classList.contains("visible") &&
 
-    puntosTexto.textContent = puntos;
-    tiempoTexto.textContent = tiempo;
-    erroresTexto.textContent = errores;
-    nivelTexto.textContent = nivel;
+topo.dataset.clicked !== "true"
 
-    actualizarObjetivo();
+){
 
-    barra.style.width = "0%";
+topo.classList.remove("visible");
 
-    mostrarTopo();
-
-    intervaloTiempo = setInterval(()=>{
-
-        tiempo--;
-
-        tiempoTexto.textContent = tiempo;
-
-        if(tiempo <= 0){
-
-            terminarJuego(false);
-
-        }
-
-    },1000);
+sumarError();
 
 }
 
-/* TERMINAR */
+/* continuar */
+if(juegoActivo){
+
+setTimeout(mostrarTopo, 80 + Math.random()*120);
+
+}
+
+}, tiempoVisible);
+
+}
+
+/* ===== CLICK ===== */
+
+topos.forEach(topo => {
+
+topo.addEventListener("click", () => {
+
+if(!juegoActivo) return;
+
+if(!topo.classList.contains("visible")) return;
+
+/* evitar bug */
+if(topo.dataset.clicked === "true") return;
+
+topo.dataset.clicked = "true";
+
+topo.classList.remove("visible");
+
+puntos++;
+
+puntosTexto.textContent = puntos;
+
+/* sonido hit */
+hitSound.currentTime = 0;
+
+hitSound.play().catch(()=>{});
+
+actualizarUI();
+
+if(puntos >= objetivos[nivel]){
+
+if(nivel < 4){
+
+pasarNivel();
+
+}else{
+
+terminarJuego(true);
+
+}
+
+}
+
+});
+
+});
+
+/* ===== PASAR NIVEL ===== */
+
+function pasarNivel(){
+
+juegoActivo = false;
+
+clearInterval(intervaloTiempo);
+
+levelSound.currentTime = 0;
+
+levelSound.play().catch(()=>{});
+
+modal.style.display = "flex";
+
+modalTitulo.textContent =
+`Nivel ${nivel} completado`;
+
+modalTexto.textContent =
+"La dificultad aumenta 🔥";
+
+modalBotones.innerHTML =
+
+`<button class="btn-next"
+onclick="continuarNivel()">
+SIGUIENTE NIVEL
+</button>`;
+
+}
+
+/* ===== CONTINUAR ===== */
+
+function continuarNivel(){
+
+modal.style.display = "none";
+
+nivel++;
+
+puntos = 0;
+
+tiempo = 45;
+
+actualizarDificultad();
+
+actualizarUI();
+
+juegoActivo = true;
+
+mostrarTopo();
+
+intervaloTiempo = setInterval(() => {
+
+tiempo--;
+
+tiempoTexto.textContent = tiempo;
+
+if(tiempo <= 0){
+
+terminarJuego(false);
+
+}
+
+}, 1000);
+
+}
+
+/* ===== INICIAR ===== */
+
+function iniciar(){
+
+clearInterval(intervaloTiempo);
+
+modal.style.display = "none";
+
+puntos = 0;
+
+errores = 0;
+
+tiempo = 45;
+
+nivel = 1;
+
+actualizarDificultad();
+
+actualizarUI();
+
+juegoActivo = true;
+
+mostrarTopo();
+
+intervaloTiempo = setInterval(() => {
+
+tiempo--;
+
+tiempoTexto.textContent = tiempo;
+
+if(tiempo <= 0){
+
+terminarJuego(false);
+
+}
+
+}, 1000);
+
+}
+
+/* ===== TERMINAR ===== */
 
 function terminarJuego(gano){
 
-    juegoActivo = false;
+juegoActivo = false;
 
-    clearInterval(intervaloTiempo);
+clearInterval(intervaloTiempo);
 
-    topos.forEach(t => {
+modal.style.display = "flex";
 
-        t.classList.remove("visible");
+modalTitulo.textContent =
+gano ? "🏆 GANASTE" : "💀 PERDISTE";
 
-    });
+modalTexto.textContent =
+gano
+? "Excelente partida"
+: "Sigue intentando";
 
-    if(gano){
+modalBotones.innerHTML =
 
-        winSound.play();
-
-        mostrarModal(
-
-            `<span class="ganar">🏆 ¡GANASTE!</span>`,
-            `Superaste todos los niveles.`,
-            
-            `
-            <button class="btn-next" onclick="reiniciarJuego()">
-            🔄 JUGAR OTRA VEZ
-            </button>
-            `
-
-        );
-
-    }else{
-
-        loseSound.play();
-
-        mostrarModal(
-
-            `<span class="perder">💀 PERDISTE</span>`,
-            `Llegaste al nivel ${nivel}.`,
-            
-            `
-            <button class="btn-cancel" onclick="reiniciarJuego()">
-            🔄 REINTENTAR
-            </button>
-            `
-
-        );
-
-    }
+`<button class="btn-restart"
+onclick="iniciar()">
+REINICIAR
+</button>`;
 
 }
 
-/* REINICIAR */
+/* ===== BOTONES ===== */
 
-function reiniciarJuego(){
+document.getElementById("startBtn").onclick = iniciar;
 
-    cerrarModal();
-
-    juegoActivo = false;
-
-    clearInterval(intervaloTiempo);
-
-    puntos = 0;
-    tiempo = 45;
-    errores = 0;
-    nivel = 1;
-
-    velocidad = 1800;
-
-    puntosTexto.textContent = puntos;
-    tiempoTexto.textContent = tiempo;
-    erroresTexto.textContent = errores;
-    nivelTexto.textContent = nivel;
-
-    actualizarObjetivo();
-
-    barra.style.width = "0%";
-
-    topos.forEach(t => {
-
-        t.classList.remove("visible");
-
-    });
-
-}
-
-/* BOTONES */
-
-startBtn.addEventListener("click", iniciarJuego);
-
-restartBtn.addEventListener("click", reiniciarJuego);
+document.getElementById("restartBtn").onclick = iniciar;
 
 </script>
 
